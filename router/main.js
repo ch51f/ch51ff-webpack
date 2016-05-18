@@ -1,6 +1,24 @@
 import React from 'react'
 import {render} from 'react-dom'
-import {hashHistory, Router} from 'react-router'
-import routes from './config/routes'
+import {Router, hashHistory} from 'react-router'
+import stubbedCourses from './stubs/COURSES'
 
-render(<Router history={hashHistory} routes={routes} />, document.getElementById('app'))
+const rootRoute = {
+	component: 'div',
+	childRoutes: [{
+		path: '/',
+		component: require('./components/AppA'),
+		childRoutes: [
+			require('./routers/Calendar'),
+			require('./routers/Course'),
+			require('./routers/Grades'),
+			require('./routers/Messages'),
+			require('./routers/Profile')
+		]
+	}]
+}
+
+render(
+	<Router history={hashHistory} routes={rootRoute} />,
+	document.getElementById('app')
+)
