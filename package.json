@@ -9,14 +9,17 @@
 		"url": ""
 	},
 	"scripts": {
-		"start": "webpack-dev-server --devtool eval --progress -w --hot --colors --content-base",
+		"start": "node server.js",
+		"webpack": "webpack-dev-server --devtool eval --progress -w --hot --colors --content-base",
 		"deploy": "webpack -p"
 	},
 	"dependencies": {
 		"react": "^0.14.0 || ^15.0.0", 
 		"react-dom": "^15.0.0",
 		"react-router": "^2.4.0", 
-    	"react-addons-css-transition-group": "^15.0.0",
+		"react-addons-css-transition-group": "^15.0.0", 
+		"react-redux": "^4.2.1", 
+		"redux": "^3.2.1",
 		"history": "^2.0.1"
 	},
 	"devDependencies": {
@@ -30,10 +33,18 @@
 		"babel-preset-es2015-loose": "^7.0.0", 
 		"babel-preset-es2015-loose-native-modules": "^1.0.0", 
 		"babel-preset-react": "^6.5.0", 
+		"babel-preset-react-hmre": "^1.1.1",
 		"babel-preset-stage-1": "^6.5.0", 
 		"babel-register": "^6.7.2",
 		"bundle-loader": "^0.5.4", 
+		"cross-env": "^1.0.7",
 		"css-loader": "^0.23.1", 
+		"enzyme": "^2.0.0", 
+		"expect": "^1.6.0", 
+		"express": "^4.13.3", 
+		"mocha": "^2.2.5", 
+		"node-libs-browser": "^0.5.2", 
+		"react-addons-test-utils": "^0.14.7",
 		"file-loader": "^0.7.2", 
 		"less": "^1.7.5", 
 		"less-loader": "^0.7.7", 
@@ -41,6 +52,9 @@
 		"open-browser-webpack-plugin": "*", 
 		"style-loader": "^0.13.1", 
 		"url-loader": "^0.5.5", 
-		"webpack-dev-server": "^1.12.14"
+		"webpack-dev-server": "^1.12.14",
+		"webpack": "^1.9.11", 
+		"webpack-dev-middleware": "^1.2.0", 
+		"webpack-hot-middleware": "^2.9.1"
 	}
 }
