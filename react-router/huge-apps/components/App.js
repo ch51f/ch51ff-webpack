@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Dashboard from './DashboardA'
+import Dashboard from './Dashboard'
 import GlobalNav from './GlobalNav'
 
 class App extends Component {

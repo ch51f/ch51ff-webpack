@@ -14,5 +14,5 @@ $ npm install
 然后，运行代码
 
 ```bash
-$ env cd=<youAppName> npm start
+$ env cd=<路径> npm start
 ```

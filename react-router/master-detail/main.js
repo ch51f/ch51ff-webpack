@@ -2,7 +2,7 @@ import React from 'react'
 import {render, findDOMNode} from 'react-dom'
 import {hashHistory, Router, Route, IndexRoute, Link, withRouter} from 'react-router'
 import ContactStore from './ContactStore'
-import './main_9.css'
+import './app.css'
 
 const App = React.createClass({
 	getInitialState() {

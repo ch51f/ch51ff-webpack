@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {hashHistory, Router, Route, Link} from 'react-router'
-import './main_5.css'
+import './app.css'
 
 class App extends Component {
 	render() {
