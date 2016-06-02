@@ -1,7 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {hashHistory, Router, Route, Link, withRouter} from 'react-router'
-import './main_11.css'
+import './app.css'
 
 const App = withRouter(
 	React.createClass({

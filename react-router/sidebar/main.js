@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {hashHistory, Router, Route, Link} from 'react-router'
 import data from './data'
-import './main_15.css'
+import './app.css'
 
 class Category extends Component {
 	render() {
