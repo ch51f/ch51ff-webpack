@@ -1,0 +1,82 @@
+@import url('../base.less');
+.window-container{
+}
+.window-content{
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+}
+.window-body{
+	margin: 20px;
+	background: #fff;
+	border-radius: 4px;
+}
+.window-header{
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	text-indent: 20px;
+	position: relative;
+}
+.window-child-html{
+	display: block;
+	padding: 20px;
+}
+.window-footer{
+	height: 50px;
+	position: relative;
+	background: @color-background;
+	border-radius: 0 0 4px 4px;
+}
+
+
+.window-btn-pos{
+	float: right;
+	margin: 10px 10px 0 0;
+	.window-btn{
+		margin: 0;
+		padding: 0;
+		background: none;
+		border: none;
+		font-size: 14px;
+		height: 30px; 
+		margin-right: 10px;
+		padding: 0 15px;
+		border-radius: 4px;
+		background: #fff;
+	}
+	.window-normal-btn{ 
+		border: @color-info solid 1px;
+	}
+	.window-primary-btn{
+		background: @color-info;
+		color: @color-white;
+	}
+}
+
+.window-btn-block {
+	.box;
+	.window-btn {
+		.flex;
+		background: #fff;
+		border: none;
+		border-radius: 0 0 4px 4px;
+		height: 50px;
+		line-height: 50px;
+		display: block;
+		&:active {
+			background: none;
+		}
+	}
+	.window-primary-btn {
+		color: @color-info;
+	}
+	.window-btn ~ .window-btn {
+		border-left: 1px solid @color-background;
+	}
+}

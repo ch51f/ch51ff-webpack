@@ -1,0 +1,72 @@
+.com-box-container{
+	border: #d2d2d2 solid 1px;
+	border-radius: 2px;
+	background: #fff;
+	position: relative;
+	z-index: 1;
+}
+.combox-content{
+	display: block;
+	height: 100%;
+	line-height: 100%;
+	font-size: 14px;
+	color: #666;
+	margin-left: 20px;
+}
+.combox-item-panel{
+	position: absolute;
+	left: -1px;
+	right: -1px;
+	height: 0;
+	overflow: hidden;
+	max-height: 0;
+	border: #d2d2d2 solid 1px;
+	border-top: none;
+	border-radius: 0 0 2px 2px;
+	z-index: 3;
+	opacity: 0;
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	transition: all 1s ease;
+}
+.combox-item{
+	display: block;
+	background: #fff;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 20px;
+	z-index: 2;
+	font-size: 14px;
+	border-bottom: #d2d2d2 solid 1px;
+	color: #666;
+}
+.combox-item:first-child{
+	margin-top: 1px;
+}
+.combox-item:last-child{
+	border-bottom: none;
+}
+.combox-item:active{
+	background: #f1f1f1;
+}
+.combox-select-btn{
+	width: 0;
+	height: 0;
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	margin-top: -3px;
+	border-style: solid;
+	border-width: 6px 6px 0 6px;
+	border-color: transparent;
+	border-top-color: #d2d2d2;
+}
+.combox-select-btn:active{
+	border-top-color: #2ea7e0;
+}
+.combox-slide-down{
+	height: auto;
+	max-height: 200px;
+	opacity: 1;
+}

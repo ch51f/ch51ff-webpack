@@ -1,0 +1,70 @@
+.btn-default{
+	.br-none;
+	.br-radius;
+	.txt-default;
+	.txt-c;
+	background-color: darken(@color-background, 0%);
+	cursor: pointer;
+	display: inline-block;
+	font-size: @font-size;
+	height: 30px;
+	line-height: 30px;
+	outline: none;
+	margin: 5px;
+	padding: 0 10px;
+	text-decoration: none;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+.btn-default:active{
+	background-color: darken(@color-background, 10%);
+}
+.btn-primary{
+	background-color: darken(@color-primary, 0%);
+	color: @color-white;
+}
+.btn-primary:active{
+	background-color: darken(@color-primary, 10%);
+}
+.btn-info{
+	background-color: darken(@color-info, 0%);
+	color: @color-white;
+}
+.btn-info:active{
+	background-color: darken(@color-info, 10%);
+}
+.btn-warning{
+	background-color: darken(@color-warning, 0%);
+	color: @color-white;
+}
+.btn-warning:active{
+	background-color: darken(@color-warning, 10%);
+}
+.btn-success{
+	background-color: darken(@color-success, 0%);
+	color: @color-white;
+}
+.btn-success:active{
+	background-color: darken(@color-success, 10%);
+}
+.btn-emphasize{
+	background-color: darken(@color-emphasize, 0%);
+	color: @color-white;
+}
+.btn-emphasize:active{
+	background-color: darken(@color-emphasize, 10%);
+}
+
+.btn-block {
+	display: block;
+	margin: 10px 0;
+	width: 100%;
+}
+
+.btn-disabled,
+.btn-disabled:active{
+	background-color: @color-disabled;
+	color: @color-muted;
+}

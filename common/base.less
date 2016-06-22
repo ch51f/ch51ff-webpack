@@ -1,0 +1,251 @@
+@import "variables.less";
+
+body, div, p, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, input, textarea, iframe, a {
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	word-break: break-all;
+}
+
+body, div, p, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd {
+	margin: 0;
+	padding: 0;
+}
+
+ul, ol, dl {
+	list-style: none;
+}
+
+iframe {
+	border: 0 none;
+	outline: 0 none;
+}
+
+input, textarea {
+	outline: 0 none;
+	resize: none;
+}
+html {
+	height: 100%;
+}
+body {
+	font-family:  "Microsoft YaHei", "Helvetica Neue", "Hiragino Sans GB", Helvetica, Arial, sans-serif; 
+	font-size: @font-size;
+	min-height: 100%;
+}
+
+a {
+	color: @color-info;
+}
+
+.clearfix:after { 
+	content: "."; 
+	display: block; 
+	height: 0; 
+	clear: both; 
+	visibility: hidden; 
+} 
+.f-l {
+  float: left;
+}
+.f-r {
+  float: right;
+}
+
+.br-radius {
+	border-radius: @radius;
+}
+
+.br-none {
+	border: 0 none;
+}
+
+
+.bg {
+	background-color: @color-background;
+}
+.bg-w {
+	background-color: @color-white;
+}
+
+.txt-default {
+	color: @color-txt;
+}
+
+.txt-muted {
+	color: @color-muted;
+}
+.txt-light {
+	color: @color-light;
+}
+
+.txt-info {
+	color: @color-info;
+}
+.txt-warning {
+	color: @color-warning;
+}
+.txt-primary {
+	color: @color-primary;
+}
+.txt-success {
+	color: @color-success;
+}
+.txt-emphasize {
+	color: @color-emphasize;
+}
+
+
+.txt-no-d {
+	text-decoration: none;
+}
+
+.txt-l {
+	text-align: left;
+}
+.txt-r {
+	text-align: right;
+}
+.txt-c {
+	text-align: center;
+}
+
+.box {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.flex {
+	-webkit-flex:1;
+	-webkit-box-flex:1;
+	-ms-box-flex:1;
+	flex:1;
+}
+.flex-2 {
+	-webkit-flex:2;
+	-webkit-box-flex:2;
+	-ms-box-flex:2;
+	flex:2;
+}
+.flex-3 {
+	-webkit-flex:3;
+	-webkit-box-flex:3;
+	-ms-box-flex:3;
+	flex:3;
+}
+.flex-4 {
+	-webkit-flex:4;
+	-webkit-box-flex:4;
+	-ms-box-flex:4;
+	flex:4;
+}
+
+.vbox{
+	-webkit-box-align:center;
+	box-align:center;
+	-ms-flex-align:center;
+	-webkit-align-items:center;
+	-moz-align-items:center;
+	-ms-align-items:center;
+	align-items: center;
+}
+.hbox{
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	-moz-justify-content:center;
+	-ms-justify-content:center;
+	justify-content:center;
+}
+.box-center{
+	.vbox;
+	.hbox;
+}
+.chid-pos(@orient,@flow){
+	-webkit-box-orient: @orient;
+	-moz-box-orient: @orient;
+	-ms-box-orient: @orient;
+	box-orient: @orient;
+	-webkit-flex-flow: @flow;
+	-moz-flex-flow: @flow;
+	-ms-flex-flow: @flow;
+	flex-flow: @flow;
+}
+.horizontal{
+	.chid-pos(horizontal,column wrap);
+}
+.vertical{
+	.chid-pos(vertical,row nowrap);
+}
+.scal-y-line{
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	-webkit-transform: scaleY(0.5); 
+	-moz-transform: scaleY(0.5); 
+	-ms-transform: scaleY(0.5); 
+	transform: scaleY(0.5);
+}
+.scal-x-line{
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-ms-transform-origin: 0 0; 
+	-webkit-transform: scaleX(0.5); 
+	-moz-transform: scaleX(0.5); 
+	-ms-transform: scaleX(0.5); 
+	transform: scaleX(0.5);
+}
+.thin-by-line:after{ 
+	content: ''; 
+	position: absolute; 
+	left: 0; 
+	bottom: 0; 
+	right: 0; 
+	border-top: #D5D5D6 solid 1px;
+	.scal-y-line;
+}
+.thin-ty-line:before{ 
+	content: " ";
+	position: absolute; 
+	left: 0; 
+	top: 0; 
+	height: 1px;
+	width: 100%; 
+	border-top: #D5D5D6 solid 1px;
+	z-index: 2;
+	.scal-y-line;
+}
+.thin_xr_line:after{ 
+	content: " "; 
+	position: absolute;
+	right: 0; 
+	top: 0;
+	height: 100%;
+	border-right: #D5D5D6 solid 1px;
+	.scal-x-line;
+}
+.thin-xl-line:before{ 
+	content: ''; 
+	position: absolute; 
+	left: 0; 
+	bottom: 0; 
+	top: 0; 
+	border-right: #D5D5D6 solid 1px;
+	.scal-x-line;
+}
+
+.clear_bg{
+	appearance: none; 
+	-webkit-appearance: none; 
+	-moz-appearance: none; 
+	-moz-appearance: none; 
+	-webkit-tap-highlight-color: transparent; 
+	-moz-tap-highlight-color: transparent; 
+	-webkit-transition: background-color; 
+	transition: background-color; 
+	-moz-transition: background-color;
+}

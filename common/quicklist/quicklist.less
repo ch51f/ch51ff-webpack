@@ -1,0 +1,56 @@
+.ql-list {
+	.first {
+		background-color: @color-background;
+		height: @height-sm;
+		line-height: @height-sm;
+		padding: 0 @edge;
+		text-transform: uppercase;
+	}
+	.second {
+		background-color: @color-white;
+		border-bottom: 1px solid @color-border;
+		display: block;
+		height: @height-default;
+		line-height: @height-default;
+		padding: 0 @edge;
+		.txt-no-d;
+		a {
+			color: @color-txt;
+			text-decoration: none;
+		}
+	}
+	.line {
+		.box;
+		.item {
+			.flex;
+		}
+		.mini {
+			.txt-muted;
+			font-size: 12px;
+			width: 55px;
+			.txt-c;
+		}
+	}
+}
+
+.ql-bar {
+	display:-webkit-box; 
+	-webkit-box-pack:center; 
+	-webkit-box-align:center;
+	position: fixed;
+	right: 0px;
+	top: 0%;
+	height: 100%;
+	width: 20px;
+	a {
+		font-size: @font-size-sm;
+		display: block;
+		height: 18px;
+		line-height: 18px;
+		margin: 0;
+		.txt-c;
+		.txt-no-d;
+		text-transform: uppercase;
+		width: 20px;
+	}
+}

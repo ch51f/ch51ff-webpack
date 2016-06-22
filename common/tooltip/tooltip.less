@@ -1,0 +1,127 @@
+@import url('../base.less');
+@import url('../variables.less');
+.tool-wrapper{
+	position:absolute;
+	left: 0;
+	top: 40px;
+	right: 0;
+}
+.tool-conent{
+	margin:0;
+	padding:0;
+	padding: 10px 20px;
+	background: rgba(1, 1, 1, 0.7);
+	line-height: 1.4em;
+	font-size: 16px;
+	color: #fff;
+	border-radius: 4px;
+	margin: 0 30px;
+	text-align: center;
+}
+.tip-pos-init{
+	-webkit-transform: translate3d(0,-300%,0);
+	-moz-transform: translate3d(0,-300%,0);
+	-ms-transform: translate3d(0,-300%,0);
+    transform: translate3d(0,-300%,0);
+    opacity: 0;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.tip-scroll-in{
+	-webkit-animation-name: tipIn;
+	-moz-animation-name: tipIn;
+	-ms-animation-name: tipIn;
+	animation-name: tipIn;
+	.animated;
+}
+.tip-scroll-out{
+    -webkit-animation-name: tipOut;
+	-moz-animation-name: tipOut;
+	-ms-animation-name: tipOut;
+	animation-name: tipOut;
+	.animated;
+}
+@keyframes tipIn{
+    0%{
+		opacity: 0;
+        transform: translate3d(0,-300%,0);
+    }
+    100%{
+    	opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+@-webkit-keyframes tipIn{
+    0%{
+    	opacity: 0;
+        -webkit-transform: translate3d(0,-300%,0);
+    }
+    100%{
+    	opacity: 1;
+        -webkit-transform: translate3d(0,0,0);
+    }
+}
+@-moz-keyframes tipIn{
+    0%{
+		opacity: 0;
+        transform: translate3d(0,-300%,0);
+    }
+    100%{
+    	opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+@-ms-keyframes tipIn{
+    0%{
+    	opacity: 0;
+        -webkit-transform: translate3d(0,-300%,0);
+    }
+    100%{
+    	opacity: 1;
+        -webkit-transform: translate3d(0,0,0);
+    }
+}
+@-webkit-keyframes tipOut{
+	from{
+		opacity: 1;
+		 -webkit-transform: translate3d(0,0,0);
+	}
+	to{
+		opacity: 0;
+		 -webkit-transform: translate3d(0,10px,0);
+	}
+}
+@-moz-keyframes tipOut{
+	from{
+		opacity: 1;
+		 -moz-transform: translate3d(0,0,0);
+	}
+	to{
+		opacity: 0;
+		 -moz-transform: translate3d(0,10px,0);
+	}
+}
+@-ms-keyframes tipOut{
+	from{
+		opacity: 1;
+		 -ms-transform: translate3d(0,0,0);
+	}
+	to{
+		opacity: 0;
+		 -ms-transform: translate3d(0,10px,0);
+	}
+}
+@keyframes tipOut{
+	from{
+		opacity: 1;
+		transform: translate3d(0,0,0);
+	}
+	to{
+		opacity: 0;
+		transform: translate3d(0,10px,0);
+	}
+}

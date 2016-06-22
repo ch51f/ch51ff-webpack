@@ -1,0 +1,58 @@
+.dialog-body{
+	position:fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+}
+.dialog-wrapper{
+	margin:0 25px;
+	background: @color-white;
+	border-radius:@radius;
+}
+.dialog-title{
+	display: block;
+	height: @height-default;
+	line-height: 1.7em;
+	text-align: center; 
+	color: @color-txt; 
+	font-size: @font-size-sm;
+	position: relative;
+}
+.dialog-message{
+	text-align: center;
+	line-height: @line-height;
+	padding: 5px 20px 25px 20px;
+	color: @color-muted;
+	font-size: @font-size-xs;
+}
+.dialog-footer{
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+.default_dialog_btn{
+	height: @height-default;
+	font-size: @font-size-xs;
+	background: none;
+	border: none;
+	outline: none;
+	margin: 0;
+	color: @color-info;
+	padding:0;
+}
+.normal_btn{
+	position: relative;
+	border-radius: 0 0 0 @radius;
+	z-index: 1;
+}
+.primary_btn{
+	border-radius: 0 0 @radius 0;
+}
+.primary_btn_single{
+	border-radius: 0 0 @radius @radius;
+}
+.default_dialog_btn:active{
+	background: @color-background;
+}

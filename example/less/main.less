@@ -1,0 +1,41 @@
+@import "../../common/base.less";
+@import "../../common/authority/authority.less";
+@import "../../common/button/button.less";
+@import "../../common/dialog/dialog.less";
+@import "../../common/quicklist/quicklist.less";
+
+.page {
+	padding: @edge-sm @edge;
+}
+
+.test-control {
+	border-top: 5px solid @color-border;
+	background-color: #fff;
+	height: 80px;
+	position: fixed;
+	padding: 10px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10000;
+}
+.test-show {
+	padding-bottom: 80px;
+}
+.test-one {
+	.bg;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+}
+
+.svg-list {
+	overflow: hidden;
+	li {
+		border: 1px solid @color-border;
+		float: left;
+		width: 33.3%;
+		padding: 10px;
+		.txt-c;
+	}
+}
