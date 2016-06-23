@@ -1,7 +1,5 @@
 /**
  * @description input组件
- * @author  zyh
- * @date  201605-11
  */
 import React from 'react';
 import classNames from 'classnames';

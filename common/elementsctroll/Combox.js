@@ -1,7 +1,5 @@
 /**
  * @description [combox]
- * @author  [zyh]
- * @date 2016-05-16
  */
 import React from 'react';
 import ClassNames from 'classnames';

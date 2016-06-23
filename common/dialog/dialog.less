@@ -1,4 +1,6 @@
 .dialog-body{
+	.box;
+	.box-center;
 	position:fixed;
 	left: 0;
 	top: 0;
@@ -7,6 +9,7 @@
 	z-index: 1000;
 }
 .dialog-wrapper{
+	.flex;
 	margin:0 25px;
 	background: @color-white;
 	border-radius:@radius;
@@ -31,6 +34,9 @@
 	display: block;
 	position: relative;
 	overflow: hidden;
+}
+.dialog-btn-panel {
+	.box;
 }
 .default_dialog_btn{
 	height: @height-default;

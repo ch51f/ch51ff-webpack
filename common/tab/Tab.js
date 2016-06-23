@@ -1,7 +1,5 @@
 /**
  *@description  Tab切换
- *@author  zyh
- *@date  2016-05-09
  */
 import React from 'react';
 import className from 'classnames';

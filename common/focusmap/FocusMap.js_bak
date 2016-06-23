@@ -7,27 +7,31 @@ import ClassNames from 'classnames';
 
 import ClassCore from '../utils/ClassCore';
 
+let me;
+
 class FocusMapView extends Component{
 	constructor(props) {
 		super(props);
+		me = this;
+		this.mapCount = 0;
+		this.startX = 0;
+		this.endX = 0;
+		this.timer = null;
+		this.scrollWrapper = null;
+		this.mapWidth = 0;
+		this.imgArr = [];
+		this.curIndex = 0;
+		this.maxWidth = 0;
 		this.state = {
 			showLoading: true,
-			curIndex: 0,
-			count: 0,
-			s_x: 0,
-			e_x: 0,
-			auto: true,
-			w_i: 0,
-			w_a: 0
+			curIndex: 0
 		}
-
-		this._touchStart = this._touchStart.bind(this);
-		this._touchMove = this._touchMove.bind(this);
-		this._touchEnd = this._touchEnd.bind(this);
 	};
 
 	_renderMapImgView() {
+		this.imgArr = [];
 		return Children.map(this.props.children, (item,index)=>{
+			this.imgArr.push(item.props.imgUrl);
 			return (
 				item
 			)
@@ -35,102 +39,93 @@ class FocusMapView extends Component{
 	};
 
 	componentWillMount() {
+		this.mapCount = Children.count(this.props.children);
 	};
 
 	componentDidMount() {
-		let {children} = this.props;
-		let {mapContainer, scrollWrapper} = this.refs;
-		let {auto} = this.state;
-		let w_i = mapContainer.offsetWidth,
-			count = Children.count(children);
-		this.setState({
-			count: count,
-			w_i: w_i,
-			w_a: w_i * count
-		});
-		scrollWrapper.style.width = (count * w_i) + 'px';
-		ClassCore.addClass(scrollWrapper, 'focus-map-easy');
-
-		if(count > 0) {
-			this.setState({
-				showLoading: false
-			});
-			if(auto) {
-				this._startTimer();
-			}
-		}
+		this.mapWidth = this.refs.mapContainer.offsetWidth;
+		this.scrollWrapper = this.refs.scrollWrapper;
+		this.maxWidth = this.mapWidth * this.mapCount;
+		this.scrollWrapper.style.width = this.maxWidth + 'px';
+		this._loadImg();
+		this._addEvent(this.scrollWrapper,'touchstart',this._touchStart);
+		ClassCore.addClass(this.scrollWrapper,'focus-map-easy');
 	};
 
 	componentWillUnmount() {
 		this._removeDomEvt();
 	};
 
-	_touchStart(e, t) {
-		let {auto} = this.state;
+	_touchStart(e) {
 		e = e?e:window.event;
 		e.preventDefault();
 		let touch = e.targetTouches[0];
-		if(auto) {
-			this._stopTimer();
-		}
-		this.setState({s_x: touch.pageX});
+		me._stopTimer();
+		me.startX = touch.pageX;
+		me._addEvent(me.scrollWrapper,'touchmove',me._touchMove);
+		me._addEvent(me.scrollWrapper,'touchend',me._touchEnd);
 	};
 
 	_touchMove(e) {
-		let {s_x, curIndex, w_i, count} = this.state;
-		let {scrollWrapper} = this.refs;
-		ClassCore.removeClass(scrollWrapper,'focus-map-easy');
 		e = e?e:window.event;
 		e.preventDefault();
 		let touch = e.targetTouches[0];
-		let e_x = touch.pageX - s_x;
-		this.setState({e_x: e_x});
-		let _sLeft = -curIndex * w_i + e_x;
-		let maxW = -(count - 1) * w_i;
-
-		if(e_x < 0) {
-			_sLeft = Math.max(_sLeft, maxW);
-		} else {
-			_sLeft = Math.min(0, _sLeft);
+		me.endX = touch.pageX - me.startX;
+		let _sLeft = -me.curIndex * me.mapWidth + me.endX;
+		let maxW = -(me.mapCount - 1) * me.mapWidth;
+		if(me.endX < 0){
+			_sLeft = Math.max(_sLeft,maxW);
+			
+		}else{
+			_sLeft = Math.min(0,_sLeft);
 		}
-
-		scrollWrapper.style.left = _sLeft + 'px';
+		ClassCore.removeClass(me.scrollWrapper,'focus-map-easy');
+		me.scrollWrapper.style.left = _sLeft + 'px';
 	};
 
 	_touchEnd(e) {
-		let {e_x, curIndex, count, auto, w_i} = this.state;
-		let {scrollWrapper} = this.refs;
 		e = e?e:window.event;
 		e.preventDefault();
 		let touch = e.targetTouches[0];
-		if(e_x >= 100){
-			if(curIndex !=0) curIndex--;
-		}else if(e_x <= -100){
-			if(curIndex != count - 1) curIndex++;
+		if(me.endX >= 100){
+			if(me.curIndex !=0) me.curIndex --;
+		}else if(me.endX <= -100){
+			if(me.curIndex != me.mapCount - 1) me.curIndex++;
 		}
-		this.setState({curIndex: curIndex})
-		ClassCore.addClass(scrollWrapper,'focus-map-easy');
-		let _scrWidth = -curIndex * w_i;
-		scrollWrapper.style.left = _scrWidth + 'px';
-		if(auto) {
+		ClassCore.addClass(me.scrollWrapper,'focus-map-easy');
+		me._focusMapChange();
+		me._removeDomEvt();
+		me._startTimer();
+	};
+
+	_removeDomEvt() {
+		me._removeEvent(me.scrollWrapper,'touchmove', me._touchMove);
+		me._removeEvent(me.scrollWrapper,'touchend', me._touchEnd);
+	};
+
+	_focusMapChange() {
+		// this.setState({curIndex: this.curIndex});
+		let _scrWidth = -this.curIndex * this.mapWidth;
+		this.scrollWrapper.style.left = _scrWidth + 'px';
+	}
+
+	_loadImg() {
+		if(this.imgArr.length > 0) {
+			this.setState({
+				showLoading: false
+			});
 			this._startTimer();
 		}
 	};
 
 	_startTimer() {
-		let {curIndex, count, w_i} = this.state;
-		let that = this;
-		let {scrollWrapper} = this.refs;
 		this._stopTimer();
 		this.timer = setInterval(function(){
-			curIndex ++;
-			if(curIndex == count){
-				curIndex = 0;
+			me.curIndex ++;
+			if(me.curIndex == me.mapCount){
+				me.curIndex = 0;
 			}
-			that.setState({curIndex: curIndex})
-			let _scrWidth = -curIndex * w_i;
-			console.log(_scrWidth);
-			scrollWrapper.style.left = _scrWidth + 'px';
+			me._focusMapChange();
 		},this.props.speed);
 	};
 	_stopTimer() {
@@ -166,7 +161,7 @@ class FocusMapView extends Component{
 						<div className='box box-center map-loading-content'>正在加载图片...</div>
 					</div> : null
 				}
-				<div ref='scrollWrapper' onTouchStart={this._touchStart} onTouchMove={this._touchMove} onTouchEnd={this._touchEnd} className='box focus-map-scroll'>
+				<div ref='scrollWrapper' className='box focus-map-scroll'>
 					{this._renderMapImgView()}
 				</div>
 				<div className='box box-center focus-index-wrapper'>

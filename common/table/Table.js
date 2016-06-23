@@ -1,7 +1,5 @@
 /**
  * @description [table数据填充]
- * @author [zyh]
- * @date  2016-05-17
  */
 import React from 'react';
 import '../base.less';

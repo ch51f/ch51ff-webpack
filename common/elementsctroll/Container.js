@@ -1,7 +1,5 @@
 /**
  *@description 页面容器
- *@author  zyh
- *@deprecated  2016-05-09
  */
 import React from 'react';
 import '../less/common.less';

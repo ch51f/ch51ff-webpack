@@ -6,6 +6,7 @@ import Home from './commonents/Home';
 import Authority from './commonents/Authority';
 import Button from './commonents/Button';
 import Dialog from './commonents/Dialog';
+import FocusMap from './commonents/FocusMap';
 
 import './less/main.less';
 
@@ -26,6 +27,7 @@ render((
 		<Route path="authority" component={Authority} />
 		<Route path="button" component={Button} />
 		<Route path="dialog" component={Dialog} />
+		<Route path="focusmap" component={FocusMap} />
 	  </Route>
   </Router>
 ), document.getElementById('app'))

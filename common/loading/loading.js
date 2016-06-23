@@ -1,7 +1,5 @@
 /**
  * @description 加载中
- * @author  zyh
- * @date 201605-06
  */
 import React from 'react';
 import './loading.less';

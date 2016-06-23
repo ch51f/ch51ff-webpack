@@ -1,7 +1,5 @@
 /**
  * @description 消息提示
- * @create date 2016-05-05
- * @author zyh
  */
 import React from 'react';
 import './tooltip.less';

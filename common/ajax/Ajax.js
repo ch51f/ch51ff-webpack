@@ -1,7 +1,5 @@
 /**
  * @description ajax数据请求
- * @create date 2016-05-04
- * @author zyh
  */
 'use strict';
 class DoAjax{

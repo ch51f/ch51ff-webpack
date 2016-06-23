@@ -1,7 +1,5 @@
 /**
  * @description 弹出层组件
- * @date 2016-05-06
- * @author zyh
  */
 import React from 'react';
 import className from 'classnames';

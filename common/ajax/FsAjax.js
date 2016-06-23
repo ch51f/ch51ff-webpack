@@ -1,7 +1,5 @@
 /**
  * @description ajax封装
- * @create date 2016-05-18
- * @author 
  */
 import Ajax from './Ajax.js';
 
