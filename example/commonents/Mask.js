@@ -15,6 +15,8 @@ class Example extends Component{
 		let {isShow} = this.state;
 		return (
 			<div>
+				<h4>title</h4>
+				<div>Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content </div>
 				<Mask isShow={isShow} />
 			</div>
 		)

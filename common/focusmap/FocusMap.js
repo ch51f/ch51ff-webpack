@@ -61,9 +61,7 @@ class FocusMapView extends Component{
 		}
 	};
 
-	componentWillUnmount() {
-		this._removeDomEvt();
-	};
+	componentWillUnmount() {};
 
 	_touchStart(e, t) {
 		let {auto} = this.state;

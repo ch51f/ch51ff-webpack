@@ -18,6 +18,25 @@ var browser = {
     language: (navigator.browserLanguage || navigator.language).toLowerCase()
 }
 
+_addEvent(target, evtName, func) {
+        if(target.addEventListener){
+            target.addEventListener(evtName,func,false)
+        }else if(target.attachEvent){
+            target.attachEvent('on' + evtName,func)
+        }else{
+            target['on' + evtName] = func
+        }
+    };
+    _removeEvent(target, evtName, func) {
+        if(target.addEventListener){
+            target.removeEventListener(evtName,func,false)
+        }else if(target.attachEvent){
+            target.detachEvent('on' + evtName,func)
+        }else{
+            delete target['on' + evtName]
+        }
+    }
+
 exports.fixedTitle = function (title) {
     document.title = title;
     // var $body = $("body");

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Arrow extends React.Component {
+class ArrowRight extends React.Component {
 	render() {
 		let color = this.props.color || "#272636",
 			size = (this.props.size || 30) + "px" ;
@@ -12,4 +12,4 @@ class Arrow extends React.Component {
 	}
 }
 
-export default Arrow;
+export default ArrowRight;

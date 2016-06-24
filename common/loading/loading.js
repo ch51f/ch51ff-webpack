@@ -2,7 +2,6 @@
  * @description 加载中
  */
 import React from 'react';
-import './loading.less';
 let me = this;
 class Loading extends React.Component{
 	constructor(props){

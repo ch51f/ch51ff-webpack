@@ -1,0 +1,15 @@
+import ArrowRight from './ArrowRight'
+import Card from './Card'
+import Contact from './Contact'
+import Deal from './Deal'
+import Edit from './Edit'
+import Edit_1 from './Edit_1'
+import Grow from './Grow'
+import ListIcon from './ListIcon'
+import Phone from './Phone'
+import Point from './Point'
+import Shield from './Shield'
+import User from './User'
+import Work from './Work'
+
+export {ArrowRight, Card, Contact, Deal, Edit, Edit_1, Grow, ListIcon, Phone, Point, Shield, User, Work}

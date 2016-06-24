@@ -12,14 +12,13 @@ class Example extends Component{
 	}
 
 	componentDidMount() {
-		this.refs.loading.show();
 	}
 
 	render() {
 		let {isShow} = this.state;
 		return (
 			<div>
-				<Loading ref="loading" />
+				<Loading ref="loading" isShow={isShow} />
 			</div>
 		)
 	}
