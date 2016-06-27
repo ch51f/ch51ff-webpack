@@ -10,7 +10,7 @@ import FocusMap from './commonents/FocusMap';
 import Loading from './commonents/Loading';
 import Mask from './commonents/Mask';
 import QuickList from './commonents/QuickList';
-import ScrollView from './commonents/ScrollView';
+import ScrollView from './commonents/ScrollViewNew';
 import Svg from './commonents/Svg';
 
 import './less/main.less';

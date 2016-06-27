@@ -22,6 +22,7 @@ class ScrollView extends Component{
 		this.showColumns = 0
 		this.columnWidth = 0
 		this.diffX = 0
+		this.vertical = true
 		this.state = {
 			height: 0
 		}
@@ -85,26 +86,29 @@ class ScrollView extends Component{
 			)
 		})
 	}
-
 	_cb (record, e) {
 		this.props.cb(record);
 	}
 	_touchStart (e){
 		e = e?e:window.event
         let touch = e.targetTouches[0];
-
         me.startX = touch.pageX;
         me.startY = touch.pageY;
 	}
 	_touchMove (e){
 		e = e?e:window.event
         let touch = e.targetTouches[0]
-        
         me.endY = touch.pageY - me.startY
         me.endX = touch.pageX - me.startX + me.temp
-
-
-        if(Math.abs(me.endY) >= 50) {
+        if(Math.abs(me.endY) > 50) {
+        	me.vertical = true;
+        } else {
+        	me.vertical = false;
+        }
+        if(me.vertical) {
+        	me.viewRight.style.transform = "translate3d(" + me.temp + "px,0,0)";
+		    me.head.style.transform = "translate3d(" + me.temp + "px,0,0)";
+		    me.endX = me.temp;
         } else {
         	e.preventDefault()
 	        if(me.endX > 0) {
@@ -123,6 +127,7 @@ class ScrollView extends Component{
 	}
 	_touchEnd (e){
 		me.temp = me.endX;
+		me.vertical = true;
 	}
 
 	render (){
