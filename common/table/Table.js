@@ -2,8 +2,6 @@
  * @description [table数据填充]
  */
 import React from 'react';
-import '../base.less';
-import './tabel.less';
 class Tabel extends React.Component{
 	constructor(pops){
 		super(pops);

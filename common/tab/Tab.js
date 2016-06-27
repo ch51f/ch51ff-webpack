@@ -3,8 +3,6 @@
  */
 import React from 'react';
 import className from 'classnames';
-import '../base.less';
-import './tab.less';
 class TabView extends React.Component{
 	constructor(props) {
 		super(props);

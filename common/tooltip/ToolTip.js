@@ -2,7 +2,6 @@
  * @description 消息提示
  */
 import React from 'react';
-import './tooltip.less';
 import className from 'classnames';
 let me = null;
 class ToolTip extends React.Component{

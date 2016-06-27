@@ -100,7 +100,8 @@ class ScrollView extends Component{
         let touch = e.targetTouches[0]
         me.endY = touch.pageY - me.startY
         me.endX = touch.pageX - me.startX + me.temp
-        if(Math.abs(me.endY) > 50) {
+		let angle = Math.atan2(Math.abs(touch.pageY - me.startY), Math.abs(touch.pageX - me.startX)) * 180 / Math.PI;
+        if(angle > 45) {
         	me.vertical = true;
         } else {
         	me.vertical = false;

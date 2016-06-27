@@ -3,8 +3,6 @@
  */
 import React from 'react';
 import className from 'classnames';
-import '../base.less';
-import './window.less';
 import Mask from '../mask/Mask';
 'use strict';
 class WindowDialog extends React.Component{
