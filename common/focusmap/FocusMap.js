@@ -10,20 +10,24 @@ import ClassCore from '../utils/ClassCore';
 class FocusMapView extends Component{
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			showLoading: true,
 			curIndex: 0,
-			count: 0,
-			s_x: 0,
-			e_x: 0,
-			auto: true,
-			w_i: 0,
-			w_a: 0
 		}
+
+		this.auto = true;
+		this.count = 0;
+		this.startX = 0;
+		this.endX = 0;
+		this.itemW = 0;
+		this.wrapW = 0;
+		this.curIndex = 0;
 
 		this._touchStart = this._touchStart.bind(this);
 		this._touchMove = this._touchMove.bind(this);
 		this._touchEnd = this._touchEnd.bind(this);
+		// this._click = this._click.bind(this);
 	};
 
 	_renderMapImgView() {
@@ -34,101 +38,106 @@ class FocusMapView extends Component{
 		});
 	};
 
-	componentWillMount() {
-	};
-
 	componentDidMount() {
 		let {children} = this.props;
 		let {mapContainer, scrollWrapper} = this.refs;
-		let {auto} = this.state;
-		let w_i = mapContainer.offsetWidth,
-			count = Children.count(children);
-		this.setState({
-			count: count,
-			w_i: w_i,
-			w_a: w_i * count
-		});
-		scrollWrapper.style.width = (count * w_i) + 'px';
+
+		this.count = Children.count(children);
+		this.itemW = mapContainer.offsetWidth;
+		this.wrapW = this.count * this.itemW;
+
+		scrollWrapper.style.width = (this.wrapW) + 'px';
 		ClassCore.addClass(scrollWrapper, 'focus-map-easy');
 
-		if(count > 0) {
+		if(this.count > 0) {
 			this.setState({
 				showLoading: false
 			});
-			if(auto) {
+			if(this.auto) {
 				this._startTimer();
 			}
 		}
 	};
 
-	componentWillUnmount() {};
-
 	_touchStart(e, t) {
-		let {auto} = this.state;
 		e = e?e:window.event;
 		e.preventDefault();
 		let touch = e.targetTouches[0];
-		if(auto) {
+		if(this.auto) {
 			this._stopTimer();
 		}
-		this.setState({s_x: touch.pageX});
+		this.startX = touch.pageX;
 	};
 
 	_touchMove(e) {
-		let {s_x, curIndex, w_i, count} = this.state;
 		let {scrollWrapper} = this.refs;
 		ClassCore.removeClass(scrollWrapper,'focus-map-easy');
 		e = e?e:window.event;
 		e.preventDefault();
 		let touch = e.targetTouches[0];
-		let e_x = touch.pageX - s_x;
-		this.setState({e_x: e_x});
-		let _sLeft = -curIndex * w_i + e_x;
-		let maxW = -(count - 1) * w_i;
+		this.endX = touch.pageX - this.startX;
+		let _sLeft = -this.curIndex * this.itemW + this.endX;
+		let maxW = -(this.count - 1) * this.itemW;
 
-		if(e_x < 0) {
+		if(this.endX < 0) {
 			_sLeft = Math.max(_sLeft, maxW);
 		} else {
 			_sLeft = Math.min(0, _sLeft);
 		}
 
-		scrollWrapper.style.left = _sLeft + 'px';
+		scrollWrapper.style.transform = 'translate3d(' + _sLeft + 'px, 0, 0)';
 	};
 
 	_touchEnd(e) {
-		let {e_x, curIndex, count, auto, w_i} = this.state;
 		let {scrollWrapper} = this.refs;
 		e = e?e:window.event;
 		e.preventDefault();
 		let touch = e.targetTouches[0];
-		if(e_x >= 100){
-			if(curIndex !=0) curIndex--;
-		}else if(e_x <= -100){
-			if(curIndex != count - 1) curIndex++;
+		if(this.endX >= 100){
+			if(this.curIndex !=0) this.curIndex--;
+		}else if(this.endX <= -100){
+			if(this.curIndex != this.count - 1) this.curIndex++;
 		}
-		this.setState({curIndex: curIndex})
 		ClassCore.addClass(scrollWrapper,'focus-map-easy');
-		let _scrWidth = -curIndex * w_i;
-		scrollWrapper.style.left = _scrWidth + 'px';
-		if(auto) {
+		let _scrWidth = -this.curIndex * this.itemW;
+		scrollWrapper.style.transform = 'translate3d(' + _scrWidth + 'px, 0, 0)';
+		this._changeCur();
+		if(this.auto) {
 			this._startTimer();
 		}
 	};
 
+	_renderMapIndexView() {
+		const {curIndex} = this.state;
+		const {children} = this.props;
+		return React.Children.map(children,(item,index)=>{
+			let clsName = ClassNames({
+				'map-index-sty': true,
+				'active-index-sty': index == curIndex
+			});
+			return (
+				<span className={clsName}></span>
+			)
+		})
+	};
+
+
+	_changeCur() {
+		this.setState({curIndex: this.curIndex});
+	}
+
 	_startTimer() {
-		let {curIndex, count, w_i} = this.state;
 		let that = this;
 		let {scrollWrapper} = this.refs;
 		this._stopTimer();
 		this.timer = setInterval(function(){
-			curIndex ++;
-			if(curIndex == count){
-				curIndex = 0;
+			that.curIndex ++;
+			if(that.curIndex == that.count){
+				that.curIndex = 0;
 			}
-			that.setState({curIndex: curIndex})
-			let _scrWidth = -curIndex * w_i;
-			console.log(_scrWidth);
-			scrollWrapper.style.left = _scrWidth + 'px';
+			let _scrWidth = -that.curIndex * that.itemW;
+			scrollWrapper.style.transform = 'translate3d(' + _scrWidth + 'px, 0, 0)';
+			that._changeCur();
 		},this.props.speed);
 	};
 	_stopTimer() {
@@ -156,7 +165,8 @@ class FocusMapView extends Component{
 	};
 	render() {
 		const {height, children} = this.props;
-		const {curIndex, showLoading} = this.state;
+		const {showLoading} = this.state
+		const {curIndex} = this;
 		return (
 			<div ref='mapContainer' style={{height:height}} className='focus-map-container'>
 				{showLoading ? 
@@ -168,7 +178,9 @@ class FocusMapView extends Component{
 					{this._renderMapImgView()}
 				</div>
 				<div className='box box-center focus-index-wrapper'>
-					<FoucsMapIndex child={children} curIndex={this.state.curIndex} />
+					<div className='map-index-pos'>
+						{this._renderMapIndexView()}
+					</div>
 				</div>
 			</div>
 		)
@@ -187,34 +199,6 @@ FocusMapView.defaultProps = {
 	speed: 4000, 
 	height: ''
 };
-
-/**
- * @description [焦点图下标]
- */
-class FoucsMapIndex extends React.Component{
-	constructor(props) {
-		super(props);
-	};
-	_renderMapIndexView() {
-		const {child, curIndex} = this.props;
-		return React.Children.map(child,(item,index)=>{
-			let clsName = ClassNames({
-				'map-index-sty': true,
-				'active-index-sty': index == curIndex
-			});
-			return (
-				<span className={clsName}></span>
-			)
-		})
-	};
-	render() {
-		return (
-			<div className='map-index-pos'>
-				{this._renderMapIndexView()}
-			</div>
-		)
-	}
-}
 
 /**
  * @description [焦点图片区域]
