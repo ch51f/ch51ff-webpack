@@ -63,6 +63,10 @@ let HomeStore = {
 			name: "Svg",
 			url: "/svg"
 		}, {
+			id: 'scroll',
+			name: "Scroll",
+			url: "/scroll"
+		}, {
 			id: 'scrollview',
 			name: "ScrollView",
 			url: "/scrollview"

@@ -10,6 +10,7 @@ import FocusMap from './commonents/FocusMap';
 import Loading from './commonents/Loading';
 import Mask from './commonents/Mask';
 import QuickList from './commonents/QuickList';
+import Scroll from './commonents/Scroll';
 import ScrollView from './commonents/ScrollViewNew';
 import Svg from './commonents/Svg';
 import Tab from './commonents/Tab';
@@ -38,6 +39,7 @@ render((
 			<Route path="loading" component={Loading} /> 
 			<Route path="mask" component={Mask} /> 
 			<Route path="quicklist" component={QuickList} /> 
+			<Route path="scroll" component={Scroll} /> 
 			<Route path="scrollview" component={ScrollView} /> 
 			<Route path="svg" component={Svg} /> 
 			<Route path="tab" component={Tab} /> 
