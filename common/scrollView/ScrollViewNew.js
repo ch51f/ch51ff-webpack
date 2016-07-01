@@ -32,11 +32,29 @@ class ScrollView extends Component{
 		this._touchEnd = this._touchEnd.bind(this);
 	}
 	componentDidMount (){
-		const {viewList} = this.refs;
+		const {viewScroll, viewList} = this.refs;
 		let itemH = viewList.querySelector('dl').offsetHeight;
 		this.setState({
 			height: itemH
 		})
+
+		this._addEvent(viewScroll,'touchstart', this._touchStart);
+		this._addEvent(viewScroll,'touchmove', this._touchMove);
+		this._addEvent(viewScroll,'touchend', this._touchEnd);
+	}
+
+	componentWillUpdate() {
+		const {viewScroll} = this.refs;
+		this._addEvent(viewScroll,'touchstart', this._touchStart);
+		this._addEvent(viewScroll,'touchmove', this._touchMove);
+		this._addEvent(viewScroll,'touchend', this._touchEnd);
+	}
+
+	componentWillUnmount() {
+		const {viewScroll} = this.refs;
+		this._removeEvent(viewScroll,'touchstart', this._touchStart);
+		this._removeEvent(viewScroll,'touchmove', this._touchMove);
+		this._removeEvent(viewScroll,'touchend', this._touchEnd);
 	}
 
 	_renderHeaderView (){
@@ -120,14 +138,24 @@ class ScrollView extends Component{
 			if(this.endX > 0) {
 				viewList.style.transform = "translate3d(" + 0 + "px,0,0)"; 
 				viewHead.style.transform = "translate3d(" + 0 + "px,0,0)"; 
+
+				viewList.style.webkitTransform = "translate3d(" + 0 + "px,0,0)"; 
+				viewHead.style.webkitTransform = "translate3d(" + 0 + "px,0,0)"; 
 				this.endX = 0;
 			} else if(this.endX < max) {
 				viewList.style.transform = "translate3d(" + max + "px,0,0)"; 
 				viewHead.style.transform = "translate3d(" + max + "px,0,0)";
+
+				viewList.style.webkitTransform = "translate3d(" + max + "px,0,0)"; 
+				viewHead.style.webkitTransform = "translate3d(" + max + "px,0,0)"; 
 				this.endX = max;
 			} else {
 				viewList.style.transform = "translate3d(" + this.endX + "px,0,0)"; 
-				viewHead.style.transform =  "translate3d(" + this.endX + "px,0,0)"; 
+				viewHead.style.transform = "translate3d(" + this.endX + "px,0,0)"; 
+
+				viewList.style.webkitTransform = "translate3d(" + this.endX + "px,0,0)"; 
+				viewHead.style.webkitTransform = "translate3d(" + this.endX + "px,0,0)"; 
+
 			} 
 		} 
 	}
@@ -136,11 +164,43 @@ class ScrollView extends Component{
 		this.transformX = this.endX;
 	}
 
+	/**
+	 * [绑定事件]
+	 * @param  {[type]} target   [目标对象]
+	 * @param  {[type]} evtName  [事件名]
+	 * @param  {[type]} func     [绑定函数]
+	 */
+	_addEvent(target, evtName, func) {
+		if(target.addEventListener){
+			target.addEventListener(evtName,func,false);
+		}else if(target.attachEvent){
+			target.attachEvent('on' + evtName,func);
+		}else{
+			target['on' + evtName] = func;
+		}
+	};
+
+	/**
+	 * [移除事件]
+	 * @param  {[type]} target   [目标对象]
+	 * @param  {[type]} evtName  [事件名]
+	 * @param  {[type]} func     [要移除的函数]
+	 */
+	_removeEvent(target, evtName, func) {
+		if(target.addEventListener){
+			target.removeEventListener(evtName,func,false);
+		}else if(target.attachEvent){
+			target.detachEvent('on' + evtName,func);
+		}else{
+			delete target['on' + evtName];
+		}
+	}
+
 	render (){
 		const {winW, winH, scrollW} = this.state;
 		const {topLeft} = this.props;
 		return (
-			<div ref='viewScroll' className='scroll-container' onTouchStart={this._touchStart} onTouchMove={this._touchMove} onTouchEnd={this._touchEnd} style={{width: winW, maxHeight: winH}}>
+			<div ref='viewScroll' className='scroll-container' style={{width: winW, maxHeight: winH}}>
 				<div className='box scroll-header'>
 					<div className='header-holder'>{topLeft}</div>
 					<div className='flex header-container'>
