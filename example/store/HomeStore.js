@@ -83,6 +83,10 @@ let HomeStore = {
 			name: 'Table',
 			url: "/table"
 		}, {
+			id: 'tips',
+			name: 'Tips',
+			url: "/tips"
+		}, {
 			id: 'tooltip',
 			name: 'Tooltip',
 			url: "/tooltip"

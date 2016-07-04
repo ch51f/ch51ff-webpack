@@ -15,6 +15,7 @@ import ScrollView from './commonents/ScrollViewNew';
 import Svg from './commonents/Svg';
 import Tab from './commonents/Tab';
 import Table from './commonents/Table';
+import Tips from './commonents/Tips';
 import Tooltip from './commonents/Tooltip';
 import Window from './commonents/Window';
 
@@ -44,6 +45,7 @@ render((
 			<Route path="svg" component={Svg} /> 
 			<Route path="tab" component={Tab} /> 
 			<Route path="table" component={Table} />
+			<Route path="tips" component={Tips} />
 			<Route path="tooltip" component={Tooltip} />
 			<Route path="window" component={Window} />
 		</Route> 

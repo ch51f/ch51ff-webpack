@@ -1,0 +1,43 @@
+.fch-tips {
+	position: fixed;
+	top: 40px;
+	left: 0;
+	width: 100%;
+	z-index: 9999;
+	-webkit-transition: all .5s;
+	transition: all .5s;
+
+	-webkit-transform: translate3d(0,-200%,0);
+	transform: translate3d(0,-200%,0);
+
+	.con {
+		background-color: rgba(1, 1, 1, 0.7);
+		border-radius: @radius;
+		color: @color-white;
+		margin: 0 auto;
+		padding: @edge-sm;
+		width: 86%;
+	}
+}
+.fch-tips.show {
+	// -webkit-transform: translateY(0);
+	// transform: translateY(0);
+
+	-webkit-animation-name: tipIn;
+	-moz-animation-name: tipIn;
+	-ms-animation-name: tipIn;
+	animation-name: tipIn;
+}
+
+@keyframes fch-tips-show{
+	0%{
+		opacity: 0;
+		-webkit-transform: translate3d(0,-200%,0);
+        transform: translate3d(0,-200%,0);
+    }
+    100%{
+    	opacity: 1;
+		-webkit-transform: translate3d(0,-200%,0);
+        transform: translate3d(0,0,0);
+    }
+}

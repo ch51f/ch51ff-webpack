@@ -52,6 +52,7 @@ export default class Scroll extends Component{
 		}
 
 		el.style.transform = "translate3d(0," + this.coord.endY + "px,0)";
+		el.style.webkitTransform = "translate3d(0," + this.coord.endY + "px,0)"; 
 	}
 
 	_touchEnd(e) {
@@ -70,6 +71,7 @@ export default class Scroll extends Component{
 		let {el} = this.refs;
 		ClassCore.addClass(el, 'ease');
 		el.style.transform = "translate3d(0," + this.coord.endY + "px,0)";
+		el.style.webkitTransform = "translate3d(0," + this.coord.endY + "px,0)"; 
 		this.coord.translateY = this.coord.endY;
 	}
 

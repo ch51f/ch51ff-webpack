@@ -131,6 +131,9 @@ class ScrollView extends Component{
 		if(this.vertical) {
 			viewList.style.transform = "translate3d(" + this.transformX + "px,0,0)"; 
 			viewHead.style.transform = "translate3d(" + this.transformX + "px,0,0)"; 
+
+			viewList.style.webkitTransform = "translate3d(" + this.transformX + "px,0,0)"; 
+			viewHead.style.webkitTransform = "translate3d(" + this.transformX + "px,0,0)"; 
 			this.endX = this.transformX;
 		} else {
 			e.preventDefault();
@@ -155,7 +158,6 @@ class ScrollView extends Component{
 
 				viewList.style.webkitTransform = "translate3d(" + this.endX + "px,0,0)"; 
 				viewHead.style.webkitTransform = "translate3d(" + this.endX + "px,0,0)"; 
-
 			} 
 		} 
 	}
